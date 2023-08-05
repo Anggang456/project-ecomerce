@@ -4,6 +4,10 @@
 return [
     'merchant_id' => env('MIDTRANS_MERCHANT_ID'),
     'client_key' => env('MIDTRANS_CLIENT_KEY'),
-    'server_key' => env('MIDTRANS_SERVEY_KEY')
+    'server_key' => env('MIDTRANS_SERVEY_KEY'),
+
+    'is_production' => false,
+    'is_sanitized' => false,
+    'is_3ds' => false,
 ];
 ?>

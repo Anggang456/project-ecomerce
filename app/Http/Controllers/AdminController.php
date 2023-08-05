@@ -9,13 +9,17 @@ use App\Models\Pesanan;
 use App\Models\PesananDetail;
 use Carbon\Carbon;
 use Auth;
+use GrahamCampbell\ResultType\Success;
 
 class AdminController extends Controller
 {
     public function index() {
         $tanggal = Carbon::now();
         $data = User::count();
+        $order_quantity = PesananDetail::count();
+        $products = Produk::count();
         $last_transaction = PesananDetail::paginate(4);
+        $earnings = Pesanan::where('status','Success')->sum('jumlah_harga');
 
         
         
@@ -42,11 +46,11 @@ class AdminController extends Controller
         //   $percent = $percent_from / $previousMonthly * 100; //decrease percent
         //}
 
-        return view('dashboard', compact('data','tanggal','monthly','total','purchases','last_transaction','total_produk'));
+        return view('dashboard', compact('earnings','data','tanggal','monthly','total','purchases','last_transaction','total_produk','order_quantity','products'));
     }
     public function orders() {
-        $orders = PesananDetail::all();
-        return view('orders', compact('orders'));
+        $orders = PesananDetail::paginate(10);
+        return view('table', compact('orders'));
     }
     public function orders_delete($id) {
         $pesanan_detail = PesananDetail::where('id', $id)->first();
@@ -59,8 +63,17 @@ class AdminController extends Controller
         return view('customers',compact('customers'));
     }
     public function customers_delete($id){
+        $pesanan_detail = PesananDetail::where('pesanan_id',$id);
+        $pesanan = Pesanan::where('users_id',$id);
         $customers = User::where('id',$id);
+        
+        $pesanan_detail->delete();
+        $pesanan->delete();
         $customers->delete();
         return view('customers');
+    }
+
+    public function paralax(){
+        
     }
 }

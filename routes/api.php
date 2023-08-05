@@ -22,7 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('login', [App\Http\Controllers\API\AuthController::class, 'login']);
 Route::post('register', [App\Http\Controllers\API\AuthController::class, 'register']);
-Route::resource('produk', ProdukController::class);
+Route::resource('produk', App\Http\Controllers\ProdukController::class);
+Route::resource('parallax', App\Http\Controllers\ParallaxController::class);
 Route::get('users', [App\Http\Controllers\API\AuthController::class, 'users']);
 Route::post('/payment-handler', [App\Http\Controllers\API\SecurityController::class, 'payment_handler']);
 Route::group(['middleware' => ['auth:sanctum']], function() {

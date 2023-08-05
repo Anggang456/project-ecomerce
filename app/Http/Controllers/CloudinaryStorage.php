@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class CloudinaryStorage extends Controller
 {
 
-    private const folder_path = 'Neysha Batik';
+    private const folder_path = 'assets';
 
     public static function path($path){
         return pathinfo($path, PATHINFO_FILENAME);

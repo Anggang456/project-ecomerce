@@ -1,10 +1,10 @@
 @extends('layouts.header')
 @section('content')
-<br>
-<div class="container" style="padding-top: 50px;">
+<section class="py-4">
+<div class="container">
     <div class="row">
         <div class="col-md-12">
-            <a href="{{ url('home') }}" class="btn btn-primary" style="border-radius: 5px;"><i class="fa fa-arrow-left"></i> Kembali</a>
+            <a href="{{ url('home') }}"><i class="fa fa-arrow-left" style="font-size: 30px;"></i></a>
         </div>
         <div class="col-md-12 mt-2">
             <nav aria-label="breadcrumb">
@@ -132,7 +132,7 @@
 
                         <div class="form-group row mb-0 mt-2">
                             <div class="col-md-6 offset-md-2">
-                                <button type="submit" class="btn portfolio-navbar gradient w-100 " style="border-radius: 5px;">
+                                <button type="submit" class="btn btn-outline-info w-100 " style="border-radius: 5px;">
                                     Save
                                 </button>
                             </div>
@@ -144,5 +144,6 @@
         
     </div>
 </div>
+</section>
 @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 @endsection

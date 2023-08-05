@@ -12,7 +12,6 @@ class ProdukController extends Controller
     {
         $this->middleware('auth');
     }
-    
     public function index() {
         $data = Produk::all();
         return view('produk', compact('data'));
@@ -32,8 +31,6 @@ class ProdukController extends Controller
             'harga' => $request->harga,
             'gambar' => $result
         ]);
-       
-
         return redirect()->route('produk.index',compact('data'))->with(['success' => 'Data Berhasil Disimpan!']); 
     }
     public function edit(Produk $produk, Request $request) {
